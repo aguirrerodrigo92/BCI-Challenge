@@ -5,7 +5,6 @@ import com.bci.challenge.exception.TestAuthenticationException;
 import com.bci.challenge.exception.UnauthorizedException;
 import com.bci.challenge.exception.UserExistsException;
 import com.bci.challenge.exception.UserNotFoundException;
-import com.bci.challenge.mapper.PhoneMapper;
 import com.bci.challenge.model.User;
 import com.bci.challenge.repository.UserRepository;
 import com.bci.challenge.security.JwtTokenUtil;
