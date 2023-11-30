@@ -45,7 +45,7 @@ public class RestResponseExceptionHandlerTest {
     @Test
     public void testHandleException() {
         Exception ex = new Exception("Unexpected error");
-        ResponseEntity<Object> responseEntity = exceptionHandler.handleException(ex);
+        ResponseEntity<Object> responseEntity = exceptionHandler.handleException();
         assertErrorResponse(responseEntity, HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected error occurred");
     }
 

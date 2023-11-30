@@ -13,6 +13,4 @@ public interface PhoneMapper {
 
     PhoneDto toDto(Phone phone);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Phone partialUpdate(PhoneDto phoneDto, @MappingTarget Phone phone);
 }

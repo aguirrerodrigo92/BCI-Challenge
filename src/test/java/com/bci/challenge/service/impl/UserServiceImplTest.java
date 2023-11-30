@@ -17,7 +17,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -46,9 +45,6 @@ public class UserServiceImplTest {
 
     @Mock
     private AuthenticationService authenticationService;
-
-    @Mock
-    private final PhoneMapper phoneMapper = PhoneMapper.INSTANCE;
 
     @InjectMocks
     private UserServiceImpl userService;
