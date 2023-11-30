@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > UserDetailsServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.bci.challenge.security</a>
+</div>
+
+<h1>Coverage Summary for Class: UserDetailsServiceImpl (com.bci.challenge.security)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserDetailsServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserDetailsServiceImpl$MockitoMock$1970543585</td>
+  </tr>
+  <tr>
+    <td class="name">UserDetailsServiceImpl$MockitoMock$1970543585$auxiliary$ICZSWYEx</td>
+  </tr>
+  <tr>
+    <td class="name">UserDetailsServiceImpl$MockitoMock$1970543585$auxiliary$NFFynrec</td>
+  </tr>
+  <tr>
+    <td class="name">UserDetailsServiceImpl$MockitoMock$1970543585$auxiliary$RW7caDjW</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.bci.challenge.security;
+&nbsp;
+&nbsp;import com.bci.challenge.exception.UserNotFoundException;
+&nbsp;import com.bci.challenge.model.User;
+&nbsp;import com.bci.challenge.repository.UserRepository;
+&nbsp;import org.springframework.security.core.GrantedAuthority;
+&nbsp;import org.springframework.security.core.authority.SimpleGrantedAuthority;
+&nbsp;import org.springframework.security.core.userdetails.UserDetails;
+&nbsp;import org.springframework.security.core.userdetails.UserDetailsService;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class UserDetailsServiceImpl implements UserDetailsService {
+&nbsp;
+&nbsp;    private final UserRepository userRepository;
+&nbsp;
+<b class="fc">&nbsp;    public UserDetailsServiceImpl(UserRepository userRepository) {</b>
+<b class="fc">&nbsp;        this.userRepository = userRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public UserDetails loadUserByUsername(String username) {
+<b class="fc">&nbsp;        Optional&lt;User&gt; userOptional = userRepository.findByEmail(username);</b>
+<b class="fc">&nbsp;        if (userOptional.isEmpty()) {</b>
+<b class="fc">&nbsp;            throw new UserNotFoundException(&quot;User not found with email: &quot; + username);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        User user = userOptional.get();</b>
+<b class="fc">&nbsp;        List&lt;GrantedAuthority&gt; authorities = List.of(new SimpleGrantedAuthority(&quot;ROLE_USER&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        return new org.springframework.security.core.userdetails.User(</b>
+<b class="fc">&nbsp;                user.getEmail(),</b>
+<b class="fc">&nbsp;                user.getPassword(),</b>
+&nbsp;                authorities
+&nbsp;        );
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-30 10:55</div>
+</div>
+</body>
+</html>
