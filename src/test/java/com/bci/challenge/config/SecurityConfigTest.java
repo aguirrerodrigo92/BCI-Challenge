@@ -47,7 +47,7 @@ class SecurityConfigTest {
     }
 
     @Test
-    void authenticationManagerBean_ShouldReturnNonNullAuthenticationManager() throws Exception {
+    void authenticationManagerBean_ShouldReturnNonNullAuthenticationManager() {
         assertNotNull(authenticationManager);
     }
 
