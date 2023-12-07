@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -96,7 +95,11 @@ public class UserController {
                                     value = "{\"timestamp\": \"2023-12-01T12:00:00\", \"code\": 500, \"detail\": \"Unexpected error occurred\"}")})})
     })
     public ResponseEntity<AuthResponse> login(
-            @ParameterObject
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "User details", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = AuthRequest.class),
+                            examples = {@ExampleObject(name = "Login Request",
+                                    value = "{\"email\": \"johndoe@example.com\", \"password\": \"a2asfGfdfdf4\"}")})
+            })
             @RequestBody AuthRequest authRequest) {
         AuthResponse response = userService.authenticateAndGenerateToken(authRequest);
         return ResponseEntity.ok(response);
