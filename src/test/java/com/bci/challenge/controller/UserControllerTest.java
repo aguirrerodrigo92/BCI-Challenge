@@ -50,11 +50,11 @@ public class UserControllerTest {
         UserController userController = new UserController(userService);
 
         // Call the signUp method in UserController
-        ResponseEntity<Object> responseEntity = userController.signUp(userRequest);
+        ResponseEntity<SignUpResponse> responseEntity = userController.signUp(userRequest);
 
         // Assertions
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        SignUpResponse responseBody = (SignUpResponse) responseEntity.getBody();
+        SignUpResponse responseBody = responseEntity.getBody();
         assertNotNull(responseBody);
 
         // Check individual fields of the SignUpResponse

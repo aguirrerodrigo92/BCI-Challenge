@@ -50,8 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/users/signup").permitAll()
-                .antMatchers("/api/users/login").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/users/signup").permitAll() // Whitelist signup endpoint
+                .antMatchers("/api/users/login").authenticated() // Require authentication for login
+                .antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll() // Whitelist Swagger UI
                 .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().addFilterBefore(new JwtTokenFilter(jwtTokenUtil, securityContextWrapper), UsernamePasswordAuthenticationFilter.class);
